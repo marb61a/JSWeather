@@ -99,3 +99,49 @@ table {
 	transition: 0s;
 }
 
+/* ========================= General Styling ========================= */
+html, body, main {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  user-select: none;
+}
+
+main {
+  background-image: url("../assets/images/bg-images/clear-day.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 100% 100%;
+}
+
+button {
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+
+/* ================================ Menu ================================ */
+#menu-container {
+  position: fixed;
+  top: 0;
+  right: -65%;
+  width: 65%;
+  height: 100%;
+  z-index: 4;
+  color: #fff;
+  transition: right .5s;
+}
+
+#menu-container>div {
+  background-color: rgba(53, 59, 72, 0.9);
+  width: 100%;
+  height: 100%;
+}
