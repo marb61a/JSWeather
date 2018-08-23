@@ -43,6 +43,11 @@ const UI = (function(){
     }
   };
 
+  const drawWeatherData = (data, location) => {
+    let currentlyData = data.currently;
+    
+  }
+
   // Menu events
   document.querySelector('#open-menu-btn').addEventListener('click', _showMenu);
   document.querySelector('#close-menu-btn').addEventListener('click', _hideMenu);
@@ -94,7 +99,30 @@ const GETLOCATION = (function(){
   Get Weather Data
 */
 const WEATHER = (function(){
+  const darkSkyKey = '',
+        geoCoderKey = '';
+  
+  const _getGeocodeURL = (location) => 
+    `https://api.opencagedata.com/geocode/v1/json?q=${location}&key=${geocoderKey}`;
 
+  const _getDarkSkyURL = (lat, lng) => 
+    `https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/${darkSkyKey}/${lat},${lng}`; 
+
+    const _getDarkSkyData = (url, location) => {
+      axios.get(url)
+        .then((res) => {
+          console.log(res);
+          UI.drawWeatherData(res.data, location)
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    };
+
+    const getWeather = (location) => {
+      UI.loadApp();
+
+    };
 })();
 
 /*
