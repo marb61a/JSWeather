@@ -44,9 +44,37 @@ const UI = (function(){
   };
 
   const drawWeatherData = (data, location) => {
-    let currentlyData = data.currently;
+    let currentlyData = data.currently,
+        dailyData = data.daily.data,
+        hourlyData = data.hourly.data,
+        weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        dailyWeatherWrapper = document.querySelector('#daily-weather-wrapper'),
+        dailyWeatherModel,
+        day,
+        maxMinTemp,
+        dailyIcon,
+        hourlyWeatherWrapper = document.querySelector("#hourly-weather-wrapper"),
+        hourlyWeatherModel,
+        hourlyIcon;
     
-  }
+    // Set Current weather 
+    document.querySelectorAll('.location-label')
+      .forEach((e) => {
+        e.innerHTML = location
+      });
+    
+    document.querySelector('main').style.backgroundImage = 
+      `url("./assets/images/bg-images/${currentlyData.icon}.jpg")`;
+    
+    document.querySelector("#currentlyIcon")
+      .setAttribute('src', `./assets/images/summary-icons/${currentlyData.icon}-white.png`);
+    
+    document.querySelector("#summary-label").innerHTML = currentlyData.summary;
+
+    // Set temperature from Fahrenheit -> Celcius
+    document.querySelector("#degrees-label").innerHTML =
+      Math.round((currentlyData.temperature - 32) * 5 / 9)  + '&#176;'
+  };
 
   // Menu events
   document.querySelector('#open-menu-btn').addEventListener('click', _showMenu);
