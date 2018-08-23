@@ -261,6 +261,46 @@ button {
   overflow-y: scroll;
 }
 
+#toggle-hourly-weather {
+  background-color: #353B48;
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+  box-shadow: 3px 0px 14px 2px rgba(000, 000, 000, .4);
+  z-index: 3;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+#toggle-hourly-weather img{
+  transition: transform .5s;
+}
+
+.weather-box {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.weather-box>div:last-child {
+  text-align: right;
+}
+
+.weather-box>div:last-child>div:last-child {
+  flex: .5 .5 0;
+}
+
+.current-day-of-the-week::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  background-color: #353B48;
+  left: -15px;
+  top: calc(50% - 5px);
+  transform: translateY(-50%);
+}
 
 /* ================================ Menu ================================ */
 #menu-container {
