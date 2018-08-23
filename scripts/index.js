@@ -91,6 +91,13 @@ const GETLOCATION = (function(){
 })();
 
 /*
+  Get Weather Data
+*/
+const WEATHER = (function(){
+
+})();
+
+/*
   Init
 */
 window.onload = function () {
