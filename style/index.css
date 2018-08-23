@@ -202,6 +202,49 @@ button {
   padding: 80px 30px 20px 30px;
 }
 
+/* Summary container */
+.location-label {
+  font-size: 30px;
+  font-weight: 900;
+  margin-bottom: 50px;
+  letter-spacing: 1.3px;
+}
+
+#temperature-summary-container {
+  align-items: center;
+}
+
+#temperature-summary-container>div:nth-child(2) {
+  text-align: center;
+}
+
+#degrees-label {
+  font-size: 60px;
+  font-weight: 900;
+}
+
+#summary-label {
+  font-size: 30px;
+}
+
+#humidity-wind-container {
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  text-align: center;
+}
+
+#humidity-wind-container>div img {
+  vertical-align: middle;
+  position: relative;
+  top: -3px;
+  margin-right: 5px;
+}
+
+#humidity-wind-container>div span {
+  font-size: 18px;
+}
+
 /* ============================= Lower Panel ============================= */
 .lower-panel {
   width: 100%;
