@@ -56,3 +56,43 @@ const UI = (function(){
     loadApp
   }
 })();
+
+/*
+  Get Location Module
+*/
+const GETLOCATION = (function(){
+  let location;
+
+  const locationInput = document.querySelector('#location-input'),
+        addCityBtn = document.querySelector('#add-city-btn');
+  
+  const _addCity = () => {
+    location = locationInput.value;
+    locationInput.value = '';
+    addCityBtn.setAttribute('disabled', 'true');
+    addCityBtn.classList.add('disabled');
+
+    console.log('Get weather for', location);
+  }
+
+  locationInput.addEventListener('input', function(){
+    let inputText = this.value.trim();
+
+    if(inputText != ''){
+      addCityBtn.removeAttribute('disabled');
+      addCityBtn.classList.remove('disabled');
+    } else {
+      addCityBtn.setAttribute('disabled', 'true');
+      addCityBtn.classList.add('disabled');
+    }
+
+    addCityBtn.addEventListener('click', _addCity);
+  })
+})();
+
+/*
+  Init
+*/
+window.onload = function () {
+  UI.showApp();
+};
