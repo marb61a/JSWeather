@@ -127,6 +127,62 @@ button {
   outline: none;
 }
 
+/* ====================== General Classes Styling ======================= */
+.center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(50%, 50%);
+}
+
+.center_x {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.center_y {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* display  */
+
+.display-none {
+  display: none;
+}
+
+/* icons */
+
+.icon-sm-25 {
+  width: 25px;
+}
+
+.icon-sm-28 {
+  width: 28px;
+}
+
+.icon-sm-30 {
+  width: 30px;
+}
+
+/* encapsulating */
+
+.flex-container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.flex-container>* {
+  flex: 1 1 0;
+}
+
+.disabled {
+  background-color: #ddd !important;
+  color: grey !important;
+}
 
 /* ================================ Menu ================================ */
 #menu-container {
