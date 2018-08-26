@@ -47,7 +47,7 @@ const UI = (function(){
     let currentlyData = data.currently,
         dailyData = data.daily.data,
         hourlyData = data.hourly.data,
-        weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
         dailyWeatherWrapper = document.querySelector('#daily-weather-wrapper'),
         dailyWeatherModel,
         day,
@@ -74,6 +74,37 @@ const UI = (function(){
     // Set temperature from Fahrenheit -> Celcius
     document.querySelector("#degrees-label").innerHTML =
       Math.round((currentlyData.temperature - 32) * 5 / 9)  + '&#176;'
+    
+    // Set humidity
+    document.querySelector("#humidity-label").innerHTML = 
+      Math.round(currentlyData.humidity * 100) + '%';
+    
+    // Set the wind speed
+    document.querySelector("#wind-speed-label").innerHTML =
+      (currentlyData.windSpeed * 1.6093).toFixed(1) + ' kph';
+    
+    /*
+      Set the daily weather
+    */
+    while(dailyWeatherWrapper.children[1]){
+      dailyWeatherWrapper.removeChild(dailyWeatherWrapper.children[1]);
+    }
+
+    for (let i = 0; i <= 6; i++){
+      // Clones the node and removes the display none close
+      dailyWeatherModel = dailyWeatherWrapper.children[0].cloneNode(true);
+      dailyWeatherModel.classList.remove('display-none');
+
+      day = weekDays[new Date(dailyData[i].time * 1000).getDay()];
+      dailyWeatherModel.children[0].children[0].innerHTML = day;
+
+      // Set min max temperature in Celcius
+      maxMinTemp = Math.round((dailyData[i].temperatureMax - 32) * 5 / 9) 
+        + '&#176;' + '/' 
+        + Math.round((dailyData[i].temperatureMin - 32) * 5 / 9) + '&#176;';
+      dailyWeatherModel.children[1].children[0].innerHTML = maxMinTemp;
+    }
+
   };
 
   // Menu events
