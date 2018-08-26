@@ -103,7 +103,37 @@ const UI = (function(){
         + '&#176;' + '/' 
         + Math.round((dailyData[i].temperatureMin - 32) * 5 / 9) + '&#176;';
       dailyWeatherModel.children[1].children[0].innerHTML = maxMinTemp;
+
+      // Set the daily icon
+      dailyIcon = dailyData[i].icon;
+      dailyWeatherModel.children[1].children[0]
+        .setAttribute('src', `./assets/images/summary-icons/${dailyIcon}-white.png`);
+      
+      // Append the model
+      dailyWeatherWrapper.appendChild(dailyWeatherModel);
     }
+    dailyWeatherWrapper.children[1].classList.add('current-day-of-the-week');
+
+    /*
+      Set the hourly weather
+    */
+    while(hourlyWeatherWrapper.children[1]){
+      hourlyWeatherWrapper.removeChild(hourlyWeatherWrapper.children[1]);
+    }
+
+    for(let i = 0; i <= 24; i++){
+      hourlyWeatherModel = hourlyWeatherWrapper.children[0].cloneNode(true);
+      hourlyWeatherModel.classList.remove('display-none');
+      
+      // Set the hour
+      hourlyWeatherModel.children[0].children[0].innerHTML =
+        new Date(hourlyData[i].time * 1000).getHours() + ":00";
+      
+      
+      hourlyWeatherWrapper.appendChild(hourlyWeatherModel);
+    };
+
+    UI.showApp();
 
   };
 
