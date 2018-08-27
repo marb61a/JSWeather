@@ -69,6 +69,7 @@ table {
   }
 }
 
+
 /* ========================= Ripple CSS ========================= */
 .ripple {
 	position: relative;
@@ -99,6 +100,7 @@ table {
 	transition: 0s;
 }
 
+
 /* ========================= General Styling ========================= */
 html, body, main {
   width: 100%;
@@ -126,6 +128,7 @@ button {
   border: none;
   outline: none;
 }
+
 
 /* ====================== General Classes Styling ======================= */
 .center {
@@ -184,6 +187,7 @@ button {
   color: grey !important;
 }
 
+
 /* =============================== MenuBtn =============================== */
 #open-menu-btn {
   position: fixed;
@@ -192,6 +196,7 @@ button {
   padding: 10px;
   z-index: 1;
 }
+
 
 /* ================== Current Weather (day) Container===================== */
 #current-day-weather-container {
@@ -244,6 +249,7 @@ button {
 #humidity-wind-container>div span {
   font-size: 18px;
 }
+
 
 /* ============================= Lower Panel ============================= */
 .lower-panel {
@@ -301,6 +307,28 @@ button {
   top: calc(50% - 5px);
   transform: translateY(-50%);
 }
+
+/* ============================ Daily Weather ============================ */
+#daily-weather-wrapper {
+  background-color: rgba(000, 000, 000, .6);
+  transition: opacity .5s;
+}
+
+
+/* ============================ Hourly Weather ============================ */
+#hourly-weather-wrapper {
+  background-color: rgba(236, 240, 241, .6);
+  color: #353B48;
+  position: fixed;
+  bottom: -100%;
+  transition: bottom .5s;
+  height: 40%;
+}
+
+#hourly-weather-wrapper>div>div:last-child {
+  color: #636E72;
+}
+
 
 /* ================================ Menu ================================ */
 #menu-container {

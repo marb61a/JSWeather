@@ -254,5 +254,18 @@ const WEATHER = (function(){
   Init
 */
 window.onload = function () {
-  UI.showApp();
+  // Get the items from localStorage & store inside the savedCities array
+  LOCALSTORAGE.get();
+
+  let cities = LOCALSTORAGE.getSavedCities();
+
+  // Check localStorage for any elements
+  if(cities.length != 0 ){
+    // Draw each saved city inside the menu
+    cities.forEach((city) => SAVEDCITIES.drawCity(city));
+
+    WEATHER.getWeather(cities[cities.length - 1], false);
+  } else {
+    UI.showApp();
+  }
 };
