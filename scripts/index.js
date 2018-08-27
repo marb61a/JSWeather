@@ -247,6 +247,36 @@ const WEATHER = (function(){
     const getWeather = (location) => {
       UI.loadApp();
 
+      // Get formatted url from OpenCageData 
+      let geocodeURL = _getGeocodeURL(data);
+
+      // Get the data from OpenCageData 
+      axios.get(geocodeURL)
+        .then((res) => {
+          // If invalid location
+          if(res.data.results.length == 0){
+            console.error("Invalid Location");
+            UI.showApp();
+            return;
+          }
+
+          if(save){
+            LOCALSTORAGE.save(location);
+            SAVEDCITIES.drawCity(location);
+          }
+          
+          let lat = res.data.results[0].geometry.lat,
+              lng = res.data.results[0].geometry.lng;
+          
+          // Get formatted URL from darkSky
+          let darkskyURL = _getDarkSkyURL(lat, lng);
+
+          // Get the weather data
+          _getDarkSkyData(darkskyURL, location);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     };
 })();
 
