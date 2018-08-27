@@ -188,6 +188,38 @@ const LOCALSTORAGE = (function(){
 
 
 /*
+  Saved Cities Module
+*/
+const SAVEDCITIES = (function(){
+  let container = document.querySelector("#saved-cities-wrapper");
+
+  // Draw a saved city inside the menu
+  const drawCity = (city) => {
+    let cityBox = document.createElement('div'),
+        cityWrapper = document.createElement('div'),
+        deleteWrapper = document.createElement('div'),
+        cityTextNode = document.createElement('h1'),
+        deleteBtn = document.createElement('button');
+    
+    cityBox.classList.add('saved-city-box', 'flex-container');
+    cityTextNode.innerHTML = city;
+    cityTextNode.classList.add('set-city');
+    cityWrapper.classList.add('ripple', 'set-city');
+    cityWrapper.append(cityTextNode);
+    cityBox.append(cityWrapper);
+
+    deleteBtn.classList.add('ripple', 'remove-saved-city');
+    deleteBtn.innerHTML = '-';
+    deleteWrapper.append(deleteBtn);
+    cityBox.append(deleteWrapper);
+
+    container.append(cityBox);
+  }
+
+})();
+
+
+/*
   Get Location Module
 */
 const GETLOCATION = (function(){
