@@ -216,6 +216,38 @@ const SAVEDCITIES = (function(){
     container.append(cityBox);
   }
 
+  // Delete a city
+  const _deleteCity = (cityHTMLbtn) => {
+    // Create an array from the saved cities
+    let nodes = Array.prototype.slice.call(container.children),
+        // Go up DOM tree until finding city wrapper
+        cityWrapper = cityHTMLBtn.closest('.saved-city-box'),
+        cityIndex = nodes.indexOf(cityWrapper);
+
+    LOCALSTORAGE.remove(cityIndex);
+    cityWrapper.remove();
+  }
+
+  document.addEventListener('click', function(){
+    if(event.target.classList.contains('remove-saved-city')){
+      _deleteCity(event.target);
+    }
+  });
+
+  document.addEventListener('click', function(event){
+    if(event.target.classList.contains('set-city')){
+      let nodes = Array.prototype.slice.call(container.children),
+          cityWrapper = event.target.closest('.saved-city-box'),
+          cityIndex = nodes.indexOf(cityWrapper),
+          savedCities = LOCALSTORAGE.getSavedCities();
+      
+      WEATHER.getWeather(savedCities[cityIndex], false);
+    }
+  });
+
+  return {
+    drawCity
+  };
 })();
 
 
