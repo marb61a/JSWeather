@@ -129,7 +129,14 @@ const UI = (function(){
       hourlyWeatherModel.children[0].children[0].innerHTML =
         new Date(hourlyData[i].time * 1000).getHours() + ":00";
       
+      hourlyWeatherModel.children[1].children[0].innerHTML =
+        Math.round((hourlyData[i].temperature - 32) * 5 / 9) + '&#176;';
       
+      hourlyIcon = hourlyData[i].icon;  
+
+      hourlyWeatherModel.children[1].children[1].children[0]
+        .setAttribute('src', `./assets/images/summary-icons/${hourlyIcon}-grey.png`);
+
       hourlyWeatherWrapper.appendChild(hourlyWeatherModel);
     };
 
@@ -147,13 +154,14 @@ const UI = (function(){
 
   return {
     showApp,
-    loadApp
-  }
+    loadApp,
+    drawWeatherData
+  };
 })();
 
 
 /*
-  LocalStorage API
+  LocalStorage API Module
 */
 const LOCALSTORAGE = (function(){
   let savedCities = [];
@@ -285,7 +293,7 @@ const GETLOCATION = (function(){
 })();
 
 /*
-  Get Weather Data
+  Get Weather Data Module
 */
 const WEATHER = (function(){
   const darkSkyKey = '',
@@ -342,10 +350,14 @@ const WEATHER = (function(){
           console.log(err);
         });
     };
+
+    return {
+      getWeather
+    };
 })();
 
 /*
-  Init
+  Init Module
 */
 window.onload = function () {
   // Get the items from localStorage & store inside the savedCities array
